@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stress
+  namespace: stress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stress
+  template:
+    metadata:
+      name: stress
+      namespace: stress
+      labels:
+        app: stress
+    spec:
+      tolerations:
+        - key: node.kubernetes.io/memory-pressure
+          operator: Exists
+      containers:
+      - name: stress
+        image: docker.io/progrium/stress
+        args:
+        - --vm
+        - "10"
+        - --vm-bytes
+        - "8096M"
+        - --vm-keep
+        - --backoff
+        - "10s"
+        - --verbose
