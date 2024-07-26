@@ -19,7 +19,7 @@ spec:
         - key: node.kubernetes.io/memory-pressure
           operator: Exists
       containers:
-      - name: stress
+      - name: stress-tmpfs
         image: docker.io/progrium/stress
         args:
         - --io

@@ -15,18 +15,18 @@ spec:
       labels:
         app: stress
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: topology.kubernetes.io/zone
+                operator: In
+                values:
+                - "1"
       tolerations:
         - key: node.kubernetes.io/memory-pressure
           operator: Exists
       containers:
       - name: stress
-        image: docker.io/progrium/stress
-        args:
-        - --vm
-        - "10"
-        - --vm-bytes
-        - "8096M"
-        - --vm-keep
-        - --backoff
-        - "10s"
-        - --verbose
+        image: docker.io/polinux/stress

@@ -2,6 +2,11 @@
 
 ## Stress
 
+### Components used
+
+1. [docker-stress docker hub](https://hub.docker.com/r/polinux/stress)
+2. [docker-stress Github](https://github.com/pozgo/docker-stress)
+
 ### Usage
 
 1. Create an OpenShift cluster
