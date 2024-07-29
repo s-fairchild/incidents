@@ -4,7 +4,7 @@ metadata:
   name: cylinder
   namespace: cylinder
 spec:
-  replicas: 40
+  replicas: 20
   selector:
     matchLabels:
       app: cylinder
@@ -27,6 +27,6 @@ spec:
         - --vm
         - "10"
         - --vm-bytes
-        - 1024MB
+        - 1G
         - --vm-keep
         - --quiet
