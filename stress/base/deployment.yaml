@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: stress
-  namespace: stress
+  name: cylinder
+  namespace: cylinder
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: stress
+      app: cylinder
   template:
     metadata:
-      name: stress
-      namespace: stress
+      name: cylinder
+      namespace: cylinder
       labels:
-        app: stress
+        app: cylinder
     spec:
       affinity:
         nodeAffinity:
@@ -28,5 +28,5 @@ spec:
         - key: node.kubernetes.io/memory-pressure
           operator: Exists
       containers:
-      - name: stress
-        image: docker.io/polinux/stress
+      - name: cylinder
+        image: quay.io/rh_ee_sfairchi/stress:latest

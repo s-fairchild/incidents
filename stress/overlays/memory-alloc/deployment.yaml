@@ -1,29 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: stress
-  namespace: stress
+  name: cylinder
+  namespace: cylinder
 spec:
   replicas: 40
   selector:
     matchLabels:
-      app: stress
+      app: cylinder
   template:
     metadata:
-      name: stress
-      namespace: stress
+      name: cylinder
+      namespace: cylinder
       labels:
-        app: stress
+        app: cylinder
     spec:
       tolerations:
         - key: node.kubernetes.io/memory-pressure
           operator: Exists
       containers:
-      - name: stress
-        image: docker.io/polinux/stress
+      - name: cylinder
+        image: quay.io/rh_ee_sfairchi/stress:latest
         imagePullPolicy: IfNotPresent
         args:
+        - stress
         - --vm
         - "10"
+        - --vm-bytes
+        - 1024MB
         - --vm-keep
-        - --verbose
+        - --quiet

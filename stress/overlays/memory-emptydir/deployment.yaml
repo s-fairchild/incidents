@@ -1,27 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: stress
-  namespace: stress
+  name: cylinder
+  namespace: cylinder
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: stress
+      app: cylinder
   template:
     metadata:
-      name: stress
-      namespace: stress
+      name: cylinder
+      namespace: cylinder
       labels:
-        app: stress
+        app: cylinder
     spec:
       tolerations:
         - key: node.kubernetes.io/memory-pressure
           operator: Exists
       containers:
-      - name: stress-tmpfs
-        image: docker.io/progrium/stress
+      - name: cylinder
+        image: quay.io/rh_ee_sfairchi/stress:latest
         args:
+        - stress
         - --io
         - "50"
         - --hdd
