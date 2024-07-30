@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: barracuda
+  namespace: barracuda
+spec:
+  replicas: 20
+  selector:
+    matchLabels:
+      app: barracuda
+  template:
+    metadata:
+      name: barracuda
+      namespace: barracuda
+      labels:
+        app: barracuda
+    spec:
+      tolerations:
+        - key: node.kubernetes.io/memory-pressure
+          operator: Exists
+      containers:
+      - name: barracuda
+        image: quay.io/rh_ee_sfairchi/stress:latest
+        args:
+        - stress
+        - --io
+        - "50"
+        - --hdd
+        - "50"
+        - --quiet
+        volumeMounts:
+        - name: database
+          mountPath: /database
+        workingDir: /database
+      volumes:
+      - name: database
+        emptyDir:
+          medium: Memory
+          

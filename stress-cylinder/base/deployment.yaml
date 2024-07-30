@@ -15,15 +15,15 @@ spec:
       labels:
         app: cylinder
     spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: topology.kubernetes.io/zone
-                operator: In
-                values:
-                - "eastus-1"
+      # affinity:
+        # nodeAffinity:
+          # requiredDuringSchedulingIgnoredDuringExecution:
+            # nodeSelectorTerms:
+            # - matchExpressions:
+              # - key: topology.kubernetes.io/zone
+                # operator: In
+                # values:
+                # - "eastus-1"
       tolerations:
         - key: node.kubernetes.io/memory-pressure
           operator: Exists
